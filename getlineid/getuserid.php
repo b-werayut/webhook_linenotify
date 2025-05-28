@@ -1,3 +1,4 @@
+
 <?php
 $LineData = file_get_contents('php://input');
 $jsonData = json_decode($LineData,true);  
@@ -37,17 +38,17 @@ function replyEnableMessage($userID, $replyToken, $quoteToken){
       "messages"=>[
           [
               "type"=>"text",
-              "text"=>"$  Enable Detection!  $",
+              "text"=>"$$ Enable Detection!",
               "emojis"=> [
       [
         "index"=> 0,
-        "productId"=> "5ac2213e040ab15980c9b447",
-        "emojiId"=> "038"
+        "productId"=> "5ac2216f040ab15980c9b448",
+        "emojiId"=> "002"
       ],
       [
-        "index"=> 22,
-        "productId"=> "5ac2213e040ab15980c9b447",
-        "emojiId"=> "038"
+        "index"=> 1,
+        "productId"=> "5ac21a18040ab15980c9b43e",
+        "emojiId"=> "065"
       ]
         ]
           ],
@@ -90,17 +91,17 @@ function replyDisableMessage($userID, $replyToken, $quoteToken){
         "messages"=>[
             [
                 "type"=>"text",
-                "text"=>"$  Disable Detection!  $",
+                "text"=>"$$ Disable Detection!",
                 "emojis"=> [
         [
           "index"=> 0,
-          "productId"=> "5ac21e6c040ab15980c9b444",
-          "emojiId"=> "005"
+          "productId"=> "5ac2216f040ab15980c9b448",
+          "emojiId"=> "002"
         ],
         [
-          "index"=> 23,
-          "productId"=> "5ac21e6c040ab15980c9b444",
-          "emojiId"=> "005"
+          "index"=> 1,
+          "productId"=> "5ac21a18040ab15980c9b43e",
+          "emojiId"=> "063"
         ]
           ]
             ],
@@ -134,6 +135,218 @@ function replyDisableMessage($userID, $replyToken, $quoteToken){
     return $result;
 }
 
+function replyEnableStatusMessage($userID, $replyToken, $quoteToken){
+  $urlEndpoint = "https://api.line.me/v2/bot/message/reply";
+    $accesstoken = "FWL29SlqhBjOS2RCtkyiWXBFg9Xc9V2DV0UE/lOSPClGEt/0XlMlzdNr5hhLAJaXyRkhojEMNoxgPJfntRfdCS9FQf2SVBX0XW2dl0C1C+peK05si03q7gId09i+ACNQgbmfq8tiTTm0WhVsY7zJFQdB04t89/1O/w1cDnyilFU=";
+    
+    $data = [
+        "replyToken"=> $replyToken,
+        "messages"=>[
+            [
+                "type"=>"text",
+                "text"=>"$$ Currently in the system!",
+                "emojis"=> [
+        [
+          "index"=> 0,
+          "productId"=> "5ac2216f040ab15980c9b448",
+          "emojiId"=> "002"
+        ],
+        [
+          "index"=> 1,
+          "productId"=> "5ac21a18040ab15980c9b43e",
+          "emojiId"=> "065"
+        ]
+          ]
+            ],
+            [
+                    "type"=> "sticker",
+                    "packageId"=> "8522",
+                    "stickerId"=> "16581271",
+                  //   "quoteToken"=> $quoteToken
+            ]
+        ]
+    ];
+  
+    $post = json_encode($data);
+    $headers = [
+        'Content-Type: application/json',
+        'Authorization: Bearer ' . $accesstoken,
+    ];
+  
+    $ch = curl_init($urlEndpoint);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+  
+    $result = curl_exec($ch);
+    $err = curl_error($ch);
+    curl_close($ch);
+    return $result;
+}
+
+function replyDisableStatusMessage($userID, $replyToken, $quoteToken){
+  $urlEndpoint = "https://api.line.me/v2/bot/message/reply";
+  $accesstoken = "FWL29SlqhBjOS2RCtkyiWXBFg9Xc9V2DV0UE/lOSPClGEt/0XlMlzdNr5hhLAJaXyRkhojEMNoxgPJfntRfdCS9FQf2SVBX0XW2dl0C1C+peK05si03q7gId09i+ACNQgbmfq8tiTTm0WhVsY7zJFQdB04t89/1O/w1cDnyilFU=";
+  
+  $data = [
+      "replyToken"=> $replyToken,
+      "messages"=>[
+          [
+              "type"=>"text",
+              "text"=>"$$ Disable Detection!",
+              "emojis"=> [
+      [
+        "index"=> 0,
+        "productId"=> "5ac2216f040ab15980c9b448",
+        "emojiId"=> "002"
+      ],
+      [
+        "index"=> 1,
+        "productId"=> "5ac21a18040ab15980c9b43e",
+        "emojiId"=> "063"
+      ]
+        ]
+          ],
+          [
+                  "type"=> "sticker",
+                  "packageId"=> "6136",
+                  "stickerId"=> "10551376",
+                //   "quoteToken"=> $quoteToken
+          ]
+      ]
+  ];
+
+  $post = json_encode($data);
+  $headers = [
+      'Content-Type: application/json',
+      'Authorization: Bearer ' . $accesstoken,
+  ];
+
+  $ch = curl_init($urlEndpoint);
+  curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
+  $result = curl_exec($ch);
+  $err = curl_error($ch);
+  curl_close($ch);
+  return $result;
+}
+
+function replyAlreadyinSystemMessage($userID, $replyToken, $quoteToken){
+  $urlEndpoint = "https://api.line.me/v2/bot/message/reply";
+  $accesstoken = "FWL29SlqhBjOS2RCtkyiWXBFg9Xc9V2DV0UE/lOSPClGEt/0XlMlzdNr5hhLAJaXyRkhojEMNoxgPJfntRfdCS9FQf2SVBX0XW2dl0C1C+peK05si03q7gId09i+ACNQgbmfq8tiTTm0WhVsY7zJFQdB04t89/1O/w1cDnyilFU=";
+  
+  $data = [
+      "replyToken"=> $replyToken,
+      "messages"=>[
+          [
+              "type"=>"text",
+              "text"=>"$$ Your Already in System!",
+              "emojis"=> [
+      [
+        "index"=> 0,
+        "productId"=> "5ac2216f040ab15980c9b448",
+        "emojiId"=> "002"
+      ],
+      [
+        "index"=> 1,
+        "productId"=> "5ac21a18040ab15980c9b43e",
+        "emojiId"=> "065"
+      ]
+        ]
+          ],
+          [
+                  "type"=> "sticker",
+                  "packageId"=> "6136",
+                  "stickerId"=> "10551378",
+                //   "quoteToken"=> $quoteToken
+          ]
+      ]
+  ];
+
+  $post = json_encode($data);
+  $headers = [
+      'Content-Type: application/json',
+      'Authorization: Bearer ' . $accesstoken,
+  ];
+
+  $ch = curl_init($urlEndpoint);
+  curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
+  $result = curl_exec($ch);
+  $err = curl_error($ch);
+  curl_close($ch);
+  return $result;
+}
+
+function replyNotinSystemMessage($userID, $replyToken, $quoteToken){
+  $urlEndpoint = "https://api.line.me/v2/bot/message/reply";
+  $accesstoken = "FWL29SlqhBjOS2RCtkyiWXBFg9Xc9V2DV0UE/lOSPClGEt/0XlMlzdNr5hhLAJaXyRkhojEMNoxgPJfntRfdCS9FQf2SVBX0XW2dl0C1C+peK05si03q7gId09i+ACNQgbmfq8tiTTm0WhVsY7zJFQdB04t89/1O/w1cDnyilFU=";
+  
+  $data = [
+      "replyToken"=> $replyToken,
+      "messages"=>[
+          [
+              "type"=>"text",
+              "text"=>"$  Your Already in System!  $",
+              "emojis"=> [
+      [
+        "index"=> 0,
+        "productId"=> "5ac2216f040ab15980c9b448",
+        "emojiId"=> "002"
+      ],
+      [
+        "index"=> 1,
+        "productId"=> "5ac21a18040ab15980c9b43e",
+        "emojiId"=> "063"
+      ]
+        ]
+          ],
+          [
+                  "type"=> "sticker",
+                  "packageId"=> "6136",
+                  "stickerId"=> "10551399",
+                //   "quoteToken"=> $quoteToken
+          ]
+      ]
+  ];
+
+  $post = json_encode($data);
+  $headers = [
+      'Content-Type: application/json',
+      'Authorization: Bearer ' . $accesstoken,
+  ];
+
+  $ch = curl_init($urlEndpoint);
+  curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
+  $result = curl_exec($ch);
+  $err = curl_error($ch);
+  curl_close($ch);
+  return $result;
+}
+
 if($userID == $userIddb){
     if($text == 'disable detection'){
         $params = array($userID);
@@ -148,11 +361,17 @@ if($userID == $userIddb){
         fclose($mylogfile);
         echo 'Delete Success!';
         die();
+        }else if($text == 'enable detection'){
+        $replyalreadysystem = replyAlreadyinSystemMessage($userID, $replyToken, $quoteToken);
+        die();
+        }else if($text == 'detection status'){
+        $replyenablestatus = replyEnableStatusMessage($userID, $replyToken, $quoteToken);
+        die();
         }
         echo 'User is already!';
         die();
 }else{
-    if($text == 'detection'){
+    if($text == 'enable detection'){
         $params = array($userID, $replyToken, $quoteToken, $timestamp);
         $sql = " INSERT INTO TmstLineUserIdCustomer (userID, replyToken, quoteToken, timestamp) VALUES (?, ?, ?, ?) ";
         $stmt = sqlsrv_query($conn, $sql, $params);
@@ -165,6 +384,12 @@ if($userID == $userIddb){
         fclose($mylogfile);
         echo 'Insert Success!';
         die();
+    }else if($text == 'disable detection'){
+      $replynotinsystem = replyNotinSystemMessage($userID, $replyToken, $quoteToken);
+      die();
+    }else if($text == 'detection status'){
+      $replydisablestatus = replyDisableStatusMessage($userID, $replyToken, $quoteToken);
+      die();
     }
 }
 
@@ -173,4 +398,10 @@ fclose($mylogfile);
 
 
 http_response_code(200);
+
+
+
+
+
+
 
